@@ -10,8 +10,6 @@ bool Game::init(const char *title, int width, int height) {
   m_windowWidth = width;
   if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     return false;
-  if (!IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG))
-    return false;
   //! 初始化窗口和渲染器
   window =
       SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -20,9 +18,8 @@ bool Game::init(const char *title, int width, int height) {
   assets = new AssetManager(renderer);
 
   //! 初始化游戏角色并加载纹理
-  // SDL_Texture* pTex = IMG_LoadTexture(renderer, "../assets/img.jpg");
-  assets->AddTexture("player", "../assets/runner.png");
-  assets->AddTexture("obs", "../assets/obs.png");
+  assets->AddTexture("player", "assets/runner.png");
+  assets->AddTexture("obs", "assets/obs.png");
   mainPlayer = new Player(width / 3, height / 3 * 2, 100, 100,
                           assets->GetTexture("player"));
 
@@ -54,7 +51,6 @@ void Game::update() {
 
     // 创建新的 Obstacle 并加入容器
     // 注意：这里需要你已经加载好的纹理
-    SDL_Texture *obsTex = IMG_LoadTexture(renderer, "../obs.png");
     gameEntities.push_back(
         new Obstacle(lane, 1000.0f, assets->GetTexture("obs")));
 
@@ -110,7 +106,6 @@ void Game::clean() {
   }
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
-  IMG_Quit();
   SDL_Quit();
   SDL_Log("Game Cleaned");
 }

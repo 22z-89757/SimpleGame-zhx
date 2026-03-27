@@ -1,7 +1,6 @@
 // #include "BackGround.hpp"
 #include "Game.hpp"
 #include <SDL.h>
-#include <SDL_image.h>
 #include <stdio.h>
 
 constexpr int windowWidth = 1200;

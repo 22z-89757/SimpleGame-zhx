@@ -1,53 +1,55 @@
-cmake_minimum_required(VERSION 4.2.0)
+cmake_minimum_required(VERSION 3.16)
 project(
     SimpleGame
     LANGUAGES CXX 
 )
-# 设置C语言标准
-# set(CMAKE_C_STANDARD 11)
 
-set(SDL2_PATH "C:/deps/SDL2")
-set(SDL2_IMAGE_PATH "C:/deps/SDL2_image")
-
-include_directories("${SDL2_PATH}/include")
-include_directories("${SDL2_IMAGE_PATH}/include")
-link_directories("${SDL2_PATH}/lib/x64")
-link_directories("${SDL2_IMAGE_PATH}/lib/x64")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # 设置源码目录
 file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-include_directories("include")
+# 使用子模块 SDL2（third_party/SDL）
+add_subdirectory(third_party/SDL EXCLUDE_FROM_ALL)
+
 add_executable(${PROJECT_NAME} ${SOURCES})
-
-
+target_include_directories(${PROJECT_NAME} PRIVATE "include")
 
 target_link_libraries(${PROJECT_NAME} 
-    SDL2main 
-    SDL2
-    SDL2_image
+    SDL2::SDL2main
+    SDL2::SDL2
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# ---------------------------------------------------------
-# SDL2 DLL 自动处理逻辑
-# ---------------------------------------------------------
+if (WIN32)
+    # 运行时自动复制 SDL2.dll 到可执行文件目录，避免启动时报缺失 DLL
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:SDL2>"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+    )
 
-# 定义 DLL 的源路径 (根据你的实际路径修改)
-set(SDL2_DLL_PATH "${SDL2_PATH}/lib/x64/SDL2.dll")
+    # MinGW 运行时依赖，拷贝后可在未安装编译环境的机器直接运行
+    get_filename_component(_CXX_BIN_DIR "${CMAKE_CXX_COMPILER}" DIRECTORY)
+    foreach(_RUNTIME_DLL libstdc++-6.dll libgcc_s_seh-1.dll)
+        if (EXISTS "${_CXX_BIN_DIR}/${_RUNTIME_DLL}")
+            add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${_CXX_BIN_DIR}/${_RUNTIME_DLL}"
+                    "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+            )
+        endif()
+    endforeach()
 
-# 添加一个构建后事件
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${SDL2_DLL_PATH}"
-        "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-    COMMENT "正在将 SDL2.dll 复制到输出目录..."
-)
-
-add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${SDL2_IMAGE_PATH}/lib/x64/SDL2_image.dll"
-        "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
-    COMMENT "正在将 SDL2_image.dll 复制到输出目录..."
-)
+    # 同步资源目录到可执行文件旁边
+    if (EXISTS "${CMAKE_SOURCE_DIR}/assets")
+        add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_directory
+                "${CMAKE_SOURCE_DIR}/assets"
+                "$<TARGET_FILE_DIR:${PROJECT_NAME}>/assets"
+        )
+    endif()
+endif()

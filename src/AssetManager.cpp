@@ -26,7 +26,14 @@ SDL_Texture* AssetManager::GetTexture(const std::string& id) {
 
     // 2. 如果没加载过，根据路径加载
     if (m_paths.find(id) != m_paths.end()) {
-        SDL_Texture* tex = IMG_LoadTexture(m_renderer, m_paths[id].c_str());
+        SDL_Surface* surface = SDL_LoadBMP(m_paths[id].c_str());
+        if (!surface) {
+            std::cerr << "Failed to load surface: " << m_paths[id] << std::endl;
+            return nullptr;
+        }
+
+        SDL_Texture* tex = SDL_CreateTextureFromSurface(m_renderer, surface);
+        SDL_FreeSurface(surface);
         if (tex) {
             m_textures[id] = tex;
             return tex;
