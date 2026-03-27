@@ -14,6 +14,9 @@
 # EXTERNAL cache entries
 ########################
 
+//Build the library as a shared library
+BUILD_SHARED_LIBS:BOOL=ON
+
 //Path to a program.
 CCACHE_BINARY:FILEPATH=CCACHE_BINARY-NOTFOUND
 
@@ -198,6 +201,9 @@ CMAKE_OBJCOPY:FILEPATH=D:/mysy64/ucrt64/bin/objcopy.exe
 //Path to a program.
 CMAKE_OBJDUMP:FILEPATH=D:/mysy64/ucrt64/bin/objdump.exe
 
+//Build static libraries with -fPIC
+CMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON
+
 //Value Computed by CMake
 CMAKE_PROJECT_COMPAT_VERSION:STATIC=
 
@@ -212,6 +218,21 @@ CMAKE_PROJECT_NAME:STATIC=SimpleGame
 
 //Value Computed by CMake
 CMAKE_PROJECT_SPDX_LICENSE:STATIC=
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION:STATIC=2.9.0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MAJOR:STATIC=2
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_MINOR:STATIC=9
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_PATCH:STATIC=0
+
+//Value Computed by CMake
+CMAKE_PROJECT_VERSION_TWEAK:STATIC=
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=D:/mysy64/ucrt64/bin/ranlib.exe
@@ -308,6 +329,96 @@ PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
 //Dependencies for the target
 SDL2-static_LIB_DEPENDS:STATIC=general;m;general;kernel32;general;user32;general;gdi32;general;winmm;general;imm32;general;ole32;general;oleaut32;general;version;general;uuid;general;advapi32;general;setupapi;general;shell32;general;dinput8;
 
+//Support loading AVIF images
+SDL2IMAGE_AVIF:BOOL=ON
+
+//Dynamically load AVIF support (requires shared libavif)
+SDL2IMAGE_AVIF_SHARED:BOOL=ON
+
+//Use stb_image for loading JPEG and PNG files
+SDL2IMAGE_BACKEND_STB:BOOL=ON
+
+//Add WIC backend (Windows Imaging Component)
+SDL2IMAGE_BACKEND_WIC:BOOL=OFF
+
+//Support loading BMP images
+SDL2IMAGE_BMP:BOOL=ON
+
+//Name suffix for debug builds
+SDL2IMAGE_DEBUG_POSTFIX:STRING=d
+
+//Load dependencies dynamically
+SDL2IMAGE_DEPS_SHARED:BOOL=ON
+
+//Support loading GIF images
+SDL2IMAGE_GIF:BOOL=ON
+
+//Support loading JPEG images
+SDL2IMAGE_JPG:BOOL=ON
+
+//Add JPEG save support
+SDL2IMAGE_JPG_SAVE:BOOL=ON
+
+//Support loading JXL images
+SDL2IMAGE_JXL:BOOL=OFF
+
+//Support loading LBM images
+SDL2IMAGE_LBM:BOOL=ON
+
+//Support loading PCX images
+SDL2IMAGE_PCX:BOOL=ON
+
+//Support loading PNG images
+SDL2IMAGE_PNG:BOOL=ON
+
+//Add PNG save support
+SDL2IMAGE_PNG_SAVE:BOOL=ON
+
+//Support loading PNM images
+SDL2IMAGE_PNM:BOOL=ON
+
+//Support loading QOI images
+SDL2IMAGE_QOI:BOOL=ON
+
+//Build the SDL2_image sample program(s)
+SDL2IMAGE_SAMPLES:BOOL=OFF
+
+//Fail when a dependency could not be found
+SDL2IMAGE_STRICT:BOOL=OFF
+
+//Support loading SVG images
+SDL2IMAGE_SVG:BOOL=ON
+
+//Build unit tests?
+SDL2IMAGE_TESTS:BOOL=OFF
+
+//Support loading TGA images
+SDL2IMAGE_TGA:BOOL=ON
+
+//Support loading TIFF images
+SDL2IMAGE_TIF:BOOL=ON
+
+//Dynamically load TIFF support (requires shared libtiff)
+SDL2IMAGE_TIF_SHARED:BOOL=ON
+
+//Use vendored third-party libraries
+SDL2IMAGE_VENDORED:BOOL=OFF
+
+//Support loading WEBP images
+SDL2IMAGE_WEBP:BOOL=ON
+
+//Dynamically load WEBP support (requires shared libwebp)
+SDL2IMAGE_WEBP_SHARED:BOOL=ON
+
+//Support loading XCF images
+SDL2IMAGE_XCF:BOOL=ON
+
+//Support loading XPM images
+SDL2IMAGE_XPM:BOOL=ON
+
+//Support loading XV images
+SDL2IMAGE_XV:BOOL=ON
+
 //Value Computed by CMake
 SDL2_BINARY_DIR:STATIC=D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL
 
@@ -328,6 +439,15 @@ SDL2_LIB_DEPENDS:STATIC=general;m;general;kernel32;general;user32;general;gdi32;
 
 //Value Computed by CMake
 SDL2_SOURCE_DIR:STATIC=D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/third_party/SDL
+
+//Value Computed by CMake
+SDL2_image_BINARY_DIR:STATIC=D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL_image
+
+//Value Computed by CMake
+SDL2_image_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+SDL2_image_SOURCE_DIR:STATIC=D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/third_party/SDL_image
 
 //Dependencies for the target
 SDL2main_LIB_DEPENDS:STATIC=general;shell32;
@@ -584,8 +704,53 @@ SimpleGame_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 SimpleGame_SOURCE_DIR:STATIC=D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx
 
+//Path to a file.
+TIFF_INCLUDE_DIR:PATH=TIFF_INCLUDE_DIR-NOTFOUND
+
+//Path to a library.
+TIFF_LIBRARY_DEBUG:FILEPATH=TIFF_LIBRARY_DEBUG-NOTFOUND
+
+//Path to a library.
+TIFF_LIBRARY_RELEASE:FILEPATH=TIFF_LIBRARY_RELEASE-NOTFOUND
+
+//The directory containing a CMake configuration file for Tiff.
+Tiff_DIR:PATH=Tiff_DIR-NOTFOUND
+
 //Path to a program.
 WINDRES:FILEPATH=D:/mysy64/ucrt64/bin/windres.exe
+
+//The directory containing a CMake configuration file for libavif.
+libavif_DIR:PATH=libavif_DIR-NOTFOUND
+
+//Extra compile options of webp
+webp_COMPILE_OPTIONS:STRING=
+
+//Path to a file.
+webp_INCLUDE_PATH:PATH=webp_INCLUDE_PATH-NOTFOUND
+
+//Path to a library.
+webp_LIBRARY:FILEPATH=webp_LIBRARY-NOTFOUND
+
+//Extra link flags of webp
+webp_LINK_FLAGS:STRING=
+
+//Extra link libraries of webp
+webp_LINK_LIBRARIES:STRING=
+
+//Extra compile options of webpdemux
+webpdemux_COMPILE_OPTIONS:STRING=
+
+//Path to a file.
+webpdemux_INCLUDE_PATH:PATH=webpdemux_INCLUDE_PATH-NOTFOUND
+
+//Path to a library.
+webpdemux_LIBRARY:FILEPATH=webpdemux_LIBRARY-NOTFOUND
+
+//Extra link flags of webpdemux
+webpdemux_LINK_FLAGS:STRING=
+
+//Extra link libraries of webpdemux
+webpdemux_LINK_LIBRARIES:STRING=
 
 
 ########################
@@ -740,7 +905,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -1136,6 +1301,8 @@ HAVE_WCSSTR:INTERNAL=1
 HAVE_WIN32_CC:INTERNAL=1
 //Test HAVE_WINDOWS_GAMING_INPUT_H
 HAVE_WINDOWS_GAMING_INPUT_H:INTERNAL=1
+//Test HAVE_WL_NO_UNDEFINED
+HAVE_WL_NO_UNDEFINED:INTERNAL=1
 //Test HAVE_XINPUT_H
 HAVE_XINPUT_H:INTERNAL=1
 //Have symbol _Exit
@@ -1172,10 +1339,18 @@ LIBC_IS_GLIBC:INTERNAL=
 PKG_CONFIG_ARGN-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: SDL2IMAGE_DEBUG_POSTFIX
+SDL2IMAGE_DEBUG_POSTFIX-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: SDL_CMAKE_DEBUG_POSTFIX
 SDL_CMAKE_DEBUG_POSTFIX-ADVANCED:INTERNAL=1
 //Have include stddef.h;stdarg.h;stdlib.h;string.h;stdio.h;wchar.h;float.h
 STDC_HEADERS:INTERNAL=1
+//ADVANCED property for variable: TIFF_INCLUDE_DIR
+TIFF_INCLUDE_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: TIFF_LIBRARY_DEBUG
+TIFF_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: TIFF_LIBRARY_RELEASE
+TIFF_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/SimpleGame
 

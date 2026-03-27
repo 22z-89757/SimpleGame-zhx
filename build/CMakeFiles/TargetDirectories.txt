@@ -9,3 +9,6 @@ D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL/CMakeFiles/
 D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL/CMakeFiles/uninstall.dir
 D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL/CMakeFiles/edit_cache.dir
 D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL/CMakeFiles/rebuild_cache.dir
+D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL_image/CMakeFiles/SDL2_image.dir
+D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL_image/CMakeFiles/edit_cache.dir
+D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL_image/CMakeFiles/rebuild_cache.dir

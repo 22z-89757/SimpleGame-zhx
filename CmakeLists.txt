@@ -13,6 +13,7 @@ file(GLOB_RECURSE SOURCES "src/*.cpp")
 
 # 使用子模块 SDL2（third_party/SDL）
 add_subdirectory(third_party/SDL EXCLUDE_FROM_ALL)
+add_subdirectory(third_party/SDL_image EXCLUDE_FROM_ALL)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE "include")
@@ -20,6 +21,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE "include")
 target_link_libraries(${PROJECT_NAME} 
     SDL2::SDL2main
     SDL2::SDL2
+    SDL2_image::SDL2_image
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -29,6 +31,11 @@ if (WIN32)
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "$<TARGET_FILE:SDL2>"
+            "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
+    )
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:SDL2_image>"
             "$<TARGET_FILE_DIR:${PROJECT_NAME}>"
     )
 

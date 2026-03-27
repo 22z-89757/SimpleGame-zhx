@@ -10,6 +10,8 @@ bool Game::init(const char *title, int width, int height) {
   m_windowWidth = width;
   if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
     return false;
+  if (!IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG))
+    return false;
   //! 初始化窗口和渲染器
   window =
       SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
@@ -106,6 +108,7 @@ void Game::clean() {
   }
   SDL_DestroyRenderer(renderer);
   SDL_DestroyWindow(window);
+  IMG_Quit();
   SDL_Quit();
   SDL_Log("Game Cleaned");
 }

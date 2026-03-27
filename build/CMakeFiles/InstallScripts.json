@@ -2,7 +2,8 @@
 	"InstallScripts" : 
 	[
 		"D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/cmake_install.cmake",
-		"D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL/cmake_install.cmake"
+		"D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL/cmake_install.cmake",
+		"D:/githubrepo/simplegame_by_zhx/SimpleGame-zhx/build/third_party/SDL_image/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

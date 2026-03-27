@@ -1,9 +1,9 @@
 # SimpleRunningGame
-一个简单的三线跑酷小游戏（未完工），使用 C++ 和 SDL2 编写。
+一个简单的三线跑酷小游戏（未完工），使用 C++、SDL2 和 SDL2_image 编写。
 
 ## 项目说明
 
-- 依赖通过 Git Submodule 管理：`third_party/SDL`
+- 依赖通过 Git Submodule 管理：`third_party/SDL`、`third_party/SDL_image`
 - 构建系统：CMake
 - 当前推荐构建环境：Windows + MSYS2(UCRT64) + MinGW Makefiles
 
@@ -46,6 +46,7 @@ cmake --build build
 
 - `SimpleGame.exe`
 - `SDL2.dll`
+- `SDL2_image.dll`
 - `libstdc++-6.dll`
 - `libgcc_s_seh-1.dll`
 - `assets/` 目录
